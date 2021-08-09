@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>FF4D40.github.io</id>
+    <title>路</title>
+    <updated>2021-08-09T16:30:10.988Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="FF4D40.github.io"/>
+    <link rel="self" href="FF4D40.github.io/atom.xml"/>
+    <rights>All rights reserved 2021, 路</rights>
+    <entry>
+        <title type="html"><![CDATA[Fofa搭配dnspy挖掘Nday]]></title>
+        <id>https://FF4D40.github.io/fofa-da-pei-lou-dong-ku-wa-jue0day</id>
+        <link href="https://FF4D40.github.io/fofa-da-pei-lou-dong-ku-wa-jue0day"/>
+        <updated>2021-08-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[刚洗完澡，躺床上无聊想着写一篇水文
+打开Tide漏洞库，随便找到一个cms的漏洞
+
+可以看到是CombinationBuyHandler.ashx文件存在注入，所以我们现在第一件事情就是获取这个系统的源码，当然直接在网上是下载不到的。我们可...]]></summary>
+        <content type="html"><![CDATA[<p>刚洗完澡，躺床上无聊想着写一篇水文</p>
+<p>打开Tide漏洞库，随便找到一个cms的漏洞<br>
+<img src="https://static.gridea.dev/306005766456738369/6H1FtwOzB.png" alt="" loading="lazy"></p>
+<p>可以看到是<code>CombinationBuyHandler.ashx</code>文件存在注入，所以我们现在第一件事情就是获取这个系统的源码，当然直接在网上是下载不到的。我们可以借助fofa+备份文件泄露来获取源码。</p>
+<p>这里提供搜索语法</p>
+<pre><code>icon_hash=&quot;471956486&quot; &amp;&amp; after=&quot;2021-01-01&quot; &amp;&amp; country=&quot;CN&quot;
+</code></pre>
+<p><img src="https://static.gridea.dev/306005766456738369/Hm2VW_1Jn.png" alt="" loading="lazy"></p>
+<p>还是有很多站点在使用这个系统的，接下来就是扫描下是否有备份文件</p>
+<p><img src="https://static.gridea.dev/306005766456738369/b0lttMtEJ.png" alt="" loading="lazy"></p>
+<p>一般审计ASP.NET的源码，都是反编译/bin目录下的dll文件。找到存在注入的文件<code>CombinationBuyHandler.ashx</code>。发现它在API文件夹下。内容为</p>
+<pre><code>&lt;%@ WebHandler Language=&quot;C#&quot; CodeBehind=&quot;CombinationBuyHandler.ashx.cs&quot; Class=&quot;Hidistro.UI.Web.API.CombinationBuyHandler&quot; %&gt;
+</code></pre>
+<p>所以我们得去看<code>Hidistro.UI.Web.dll</code>这个文件。</p>
+<p><img src="https://static.gridea.dev/306005766456738369/xSZKFaB63.png" alt="" loading="lazy"></p>
+<p>可以看到漏洞文件只有几个方法，接下来代码审计开始！</p>
+<pre><code>public void ProcessRequest(HttpContext context)
+		{
+			context.Response.ContentType = &quot;text/plain&quot;;
+			try
+			{
+				string sType = context.Request[&quot;action&quot;];
+				bool flag = string.IsNullOrEmpty(sType);
+				if (flag)
+				{
+					context.Response.Write(&quot;参数错误&quot;);
+				}
+				else
+				{
+					this.context = context;
+					string text = sType;
+					string a = text;
+					if (!(a == &quot;GetSkuByProductIds&quot;))
+					{
+						if (!(a == &quot;GetProductAttrList&quot;))
+						{
+							if (a == &quot;GetCombinationSku&quot;)
+							{
+								this.GetCombinationSku();
+							}
+						}
+						else
+						{
+							this.GetProductAttrList();
+						}
+					}
+					else
+					{
+						this.GetSkuByProductIds();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				context.Response.Write(ex.Message.ToString());
+			}
+		}
+</code></pre>
+<p>sType决定走哪个函数分支，这里我们选择<code>GetSkuByProductIds</code>。</p>
+<pre><code>public void GetSkuByProductIds()
+		{
+			string productIds = this.context.Request[&quot;ProductIds&quot;];
+			int combinationId = 0;
+			int.TryParse(this.context.Request[&quot;CombinationId&quot;], out combinationId);
+			bool flag = string.IsNullOrEmpty(productIds);
+			if (!flag)
+			{
+				string fromTable = this.context.Request[&quot;fromTable&quot;];
+				bool flag2 = fromTable == &quot;combination&quot;;
+				DataTable dt;
+				if (flag2)
+				{
+					bool flag3 = combinationId == 0;
+					if (flag3)
+					{
+						return;
+					}
+					dt = CombinationBuyHelper.GetSkuByProductIdsFromCombination(combinationId, productIds);
+				}
+...省略
+</code></pre>
+<p>可以看到<code>productIds</code>只是判断是否为空，未经过滤就带入了<code>GetSkuByProductIdsFromCombination</code>方法。我们去看下该方法的实现。</p>
+<p><img src="https://static.gridea.dev/306005766456738369/8G9-j4lVK.png" alt="" loading="lazy"></p>
+<p>很容易发现，这里的SQL语句是拼接的，所以存在注入。我们验证下</p>
+<p><img src="https://static.gridea.dev/306005766456738369/o76Md6B3g.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+</feed>

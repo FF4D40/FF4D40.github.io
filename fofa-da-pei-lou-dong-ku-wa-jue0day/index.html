@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" style="--theme-color: #262626; --link-color: #262626;">
+<head>
+  <meta charset="UTF-8">
+  <title>Fofa搭配dnspy挖掘Nday - 路</title>
+
+  <link rel="icon" href="">
+<!-- <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"> -->
+<link rel="alternate" type="application/atom+xml" title="路 - Atom Feed" href="https://FF4D40.github.io/atom.xml">
+
+  
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-NFCRR8Q57W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script> -->
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-182385326-1');
+    ga('set', 'dimension1', 'site/XUFCs-dQZ');
+    ga('set', 'dimension2', 'post/RM8IFJDA0');
+    ga('send', 'pageview');
+    // gtag('set', {
+    //   'custom_map': {
+    //     'dimension1': 'siteId',
+    //     'dimension2': 'postId',
+    //   }
+    // })
+
+    // gtag('config', 'G-NFCRR8Q57W', {
+    //   'siteId': 'site/XUFCs-dQZ',
+    //   'postId': 'post/RM8IFJDA0',
+    // });
+  </script>
+
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="刚洗完澡，躺床上无聊想着写一篇水文
+打开Tide漏洞库，随便找到一个cms的漏洞
+
+可以看到是CombinationBuyHandler.ashx文件存在注入，所以我们现在第一件事情就是获取这个系统的源码，当然直接在网上是下载不到的。我们可...">
+
+  <meta property="og:title" content="Fofa搭配dnspy挖掘Nday - 路">
+  <meta property="og:description" content="刚洗完澡，躺床上无聊想着写一篇水文
+打开Tide漏洞库，随便找到一个cms的漏洞
+
+可以看到是CombinationBuyHandler.ashx文件存在注入，所以我们现在第一件事情就是获取这个系统的源码，当然直接在网上是下载不到的。我们可...">
+  
+  <meta property="og:url" content="https://FF4D40.github.io/fofa-da-pei-lou-dong-ku-wa-jue0day/">
+  <meta property="og:site_name" content="路">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="Fofa搭配dnspy挖掘Nday">
+
+  <meta name="gridea:post_id" content="RM8IFJDA0">
+
+  <link rel="canonical" href="https://FF4D40.github.io/fofa-da-pei-lou-dong-ku-wa-jue0day">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/a11y-light.css">
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@gridea/theme@1.0.8/css/main.css">
+
+</head>
+<body>
+  
+    
+  
+  <div id="page">
+    <div class="mb-16 sticky top-0 z-20 bg-white">
+  <header class="py-4 flex items-baseline justify-between max-w-2xl mx-auto px-2">
+    <h1 class="text-lg text-center font-medium px-4 md:px-0 flex items-center">
+      <div class="site-logo-text font-normal">路</div>
+      <a href="/">路</a>
+    </h1>
+    <div class="hidden sm:flex justify-center">
+      
+    </div>
+    <div class="flex sm:hidden py-2 px-4 text-center cursor-pointer" @click="openMenu = true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/></svg>
+    </div>
+  </header>
+
+  <div class="fixed top-0 right-0 bottom-0 left-0 bg-white hidden" :style="{
+    display: openMenu ? 'block !important' : 'none',
+  }" v-if="openMenu">
+    <div class="py-4 px-2 flex justify-end" @click="openMenu = false">
+      <div class="flex py-2 px-4 text-center cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></svg>
+      </div>
+    </div>
+    <div class="flex flex-col p-4">
+      
+    </div>
+  </div>
+</div>
+    <div class="border-b border-gray-200">
+      <div class="max-w-2xl mx-auto px-6 md:px-2">
+        <div class="my-24 text-center">
+          <h1 class="text-2xl font-bold">Fofa搭配dnspy挖掘Nday</h1>
+          <div class="post-title-bar mx-auto rounded mt-4"></div>
+          <div class="text-gray-400 mt-4">2021.08.09</div>
+          <div class="flex justify-center mt-4">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sticky-bar" class="w-full sticky top-0 z-10 bg-white" style="height: 64px;"></div>
+    <div class="p-4 md:p-16 bg-white">
+      <div class="max-w-2xl mx-auto px-4 flex relative">
+        <section class="post-content flex-1 default-post-content max-w-2xl">
+          <div v-pre>
+            <p>刚洗完澡，躺床上无聊想着写一篇水文</p>
+<p>打开Tide漏洞库，随便找到一个cms的漏洞<br>
+<img src="https://static.gridea.dev/306005766456738369/6H1FtwOzB.png" alt="" loading="lazy"></p>
+<p>可以看到是<code>CombinationBuyHandler.ashx</code>文件存在注入，所以我们现在第一件事情就是获取这个系统的源码，当然直接在网上是下载不到的。我们可以借助fofa+备份文件泄露来获取源码。</p>
+<p>这里提供搜索语法</p>
+<pre><code>icon_hash=&quot;471956486&quot; &amp;&amp; after=&quot;2021-01-01&quot; &amp;&amp; country=&quot;CN&quot;
+</code></pre>
+<p><img src="https://static.gridea.dev/306005766456738369/Hm2VW_1Jn.png" alt="" loading="lazy"></p>
+<p>还是有很多站点在使用这个系统的，接下来就是扫描下是否有备份文件</p>
+<p><img src="https://static.gridea.dev/306005766456738369/b0lttMtEJ.png" alt="" loading="lazy"></p>
+<p>一般审计ASP.NET的源码，都是反编译/bin目录下的dll文件。找到存在注入的文件<code>CombinationBuyHandler.ashx</code>。发现它在API文件夹下。内容为</p>
+<pre><code>&lt;%@ WebHandler Language=&quot;C#&quot; CodeBehind=&quot;CombinationBuyHandler.ashx.cs&quot; Class=&quot;Hidistro.UI.Web.API.CombinationBuyHandler&quot; %&gt;
+</code></pre>
+<p>所以我们得去看<code>Hidistro.UI.Web.dll</code>这个文件。</p>
+<p><img src="https://static.gridea.dev/306005766456738369/xSZKFaB63.png" alt="" loading="lazy"></p>
+<p>可以看到漏洞文件只有几个方法，接下来代码审计开始！</p>
+<pre><code>public void ProcessRequest(HttpContext context)
+		{
+			context.Response.ContentType = &quot;text/plain&quot;;
+			try
+			{
+				string sType = context.Request[&quot;action&quot;];
+				bool flag = string.IsNullOrEmpty(sType);
+				if (flag)
+				{
+					context.Response.Write(&quot;参数错误&quot;);
+				}
+				else
+				{
+					this.context = context;
+					string text = sType;
+					string a = text;
+					if (!(a == &quot;GetSkuByProductIds&quot;))
+					{
+						if (!(a == &quot;GetProductAttrList&quot;))
+						{
+							if (a == &quot;GetCombinationSku&quot;)
+							{
+								this.GetCombinationSku();
+							}
+						}
+						else
+						{
+							this.GetProductAttrList();
+						}
+					}
+					else
+					{
+						this.GetSkuByProductIds();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				context.Response.Write(ex.Message.ToString());
+			}
+		}
+</code></pre>
+<p>sType决定走哪个函数分支，这里我们选择<code>GetSkuByProductIds</code>。</p>
+<pre><code>public void GetSkuByProductIds()
+		{
+			string productIds = this.context.Request[&quot;ProductIds&quot;];
+			int combinationId = 0;
+			int.TryParse(this.context.Request[&quot;CombinationId&quot;], out combinationId);
+			bool flag = string.IsNullOrEmpty(productIds);
+			if (!flag)
+			{
+				string fromTable = this.context.Request[&quot;fromTable&quot;];
+				bool flag2 = fromTable == &quot;combination&quot;;
+				DataTable dt;
+				if (flag2)
+				{
+					bool flag3 = combinationId == 0;
+					if (flag3)
+					{
+						return;
+					}
+					dt = CombinationBuyHelper.GetSkuByProductIdsFromCombination(combinationId, productIds);
+				}
+...省略
+</code></pre>
+<p>可以看到<code>productIds</code>只是判断是否为空，未经过滤就带入了<code>GetSkuByProductIdsFromCombination</code>方法。我们去看下该方法的实现。</p>
+<p><img src="https://static.gridea.dev/306005766456738369/8G9-j4lVK.png" alt="" loading="lazy"></p>
+<p>很容易发现，这里的SQL语句是拼接的，所以存在注入。我们验证下</p>
+<p><img src="https://static.gridea.dev/306005766456738369/o76Md6B3g.png" alt="" loading="lazy"></p>
+
+          </div>
+          <div class="py-4 text-gray-600 flex items-center justify-between">
+            <div class="">
+              <div class="text-sm text-gray-300">最后更新于: </div>
+              <div class="text-base font-medium">2021.08.09</div>
+            </div>
+            <!-- <div class="flex items-center text-sm text-gray-600">
+              <i class="ri-eye-line"></i> <span class="ml-2">{{ views }}</span>
+            </div> -->
+          </div>
+          <div>
+            <div id="disqus_thread"></div>
+          </div>
+        </section>
+        
+      </div>
+    </div>
+    <div class="py-8 text-gray-300 text-center border-t border-gray-200">
+  Powered by Gridea
+</div>
+  </div>
+
+  <script src="//cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/@gridea/theme@1.0.8/js/main.js"></script>
+
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+  
+    
+  
+</body>
+</html>
